@@ -8,13 +8,12 @@ namespace Catalog.RestFulApi.Data.Entities
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
-        [BsonElement(nameof(Name))]
+        [BsonElement("Name")]
         public string Name { get; set; }
-        [BsonElement(nameof(Catagory))]
-        public string Catagory { get; set; }
-        [BsonElement(nameof(Summery))]
-        public string Summery { get; set; }
-        [BsonElement(nameof(Price))]
+        public string Category { get; set; }
+        public string Summary { get; set; }
+        public string Description { get; set; }
+        public string ImageFile { get; set; }
         public decimal Price { get; set; }
     }
 }
