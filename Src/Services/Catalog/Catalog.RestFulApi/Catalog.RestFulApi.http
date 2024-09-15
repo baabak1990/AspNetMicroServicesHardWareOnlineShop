@@ -1,0 +1,6 @@
+@Catalog.RestFulApi_HostAddress = http://localhost:5258
+
+GET {{Catalog.RestFulApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
