@@ -7,11 +7,11 @@ namespace Catalog.RestFulApi.Data.Presistence.Repository
 {
     public class ProductRepository : IProductRepository
     {
-        private readonly CatalogContext _catalogContext;
+        private readonly ICatalogContext _catalogContext;
 
-        public ProductRepository(CatalogContext catalogContext)
+        public ProductRepository(ICatalogContext catalogContext)
         {
-            _catalogContext = catalogContext;
+            _catalogContext = catalogContext ?? throw new ArgumentNullException(nameof(catalogContext));
         }
 
         public async Task<IEnumerable<Product>> GetProducts()

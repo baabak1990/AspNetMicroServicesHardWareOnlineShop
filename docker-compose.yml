@@ -1,0 +1,11 @@
+services:
+  catalogdb:
+    image: mongo
+
+  catalog.restfulapi:
+    image: ${DOCKER_REGISTRY-}catalogrestfulapi
+    build:
+      context: .
+      dockerfile: Src/Services/Catalog/Catalog.RestFulApi/Dockerfile
+volumes:
+  mongo_data:
