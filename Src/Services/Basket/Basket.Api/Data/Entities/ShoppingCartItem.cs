@@ -5,7 +5,7 @@
         public int Quantity { get; set; }
         public string Color { get; set; }
         public decimal Price { get; set; }
-        public string ProductId { get; set; }
+        public string ProductId { get; set; } //We Take it from Catalog Service 
         public string ProductName { get; set; }
     }
 }
