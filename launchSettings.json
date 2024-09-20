@@ -4,7 +4,8 @@
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
       "serviceActions": {
-        "catalog.restfulapi": "StartDebugging"
+        "catalog.restfulapi": "StartDebugging",
+        "basket.api": "StartDebugging"
       }
     }
   }

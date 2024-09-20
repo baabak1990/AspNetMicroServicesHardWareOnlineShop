@@ -2,10 +2,20 @@ services:
   catalogdb:
     image: mongo
 
+  basketdb:
+    image: redis:alpine
+
   catalog.restfulapi:
     image: ${DOCKER_REGISTRY-}catalogrestfulapi
     build:
       context: .
       dockerfile: Src/Services/Catalog/Catalog.RestFulApi/Dockerfile
+
+  basket.api:
+    image: ${DOCKER_REGISTRY-}basketapi
+    build:
+      context: .
+      dockerfile: Src/Services/Basket/Basket.Api/Dockerfile
+
 volumes:
   mongo_data:
