@@ -32,7 +32,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
-      - "CashSettings:ConnectionString=basketdb:6379"  
+      - "CacheSettings:ConnectionString=basketdb:6379"  
     depends_on:
       - basketdb
     ports:
