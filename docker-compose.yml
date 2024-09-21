@@ -9,7 +9,10 @@ services:
     image: portainer/portainer-ce
     
   discountdb:
-    image: postgres      
+    image: postgres    
+    
+  pgadmin:
+    image: dpage/pgadmin4  
 
   catalog.restfulapi:
     image: ${DOCKER_REGISTRY-}catalogrestfulapi
@@ -27,3 +30,4 @@ volumes:
   mongo_data:
   portainer_data:
   postgres_data:
+  pgadmin_data:
