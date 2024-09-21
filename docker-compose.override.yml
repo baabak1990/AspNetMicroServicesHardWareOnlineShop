@@ -13,8 +13,28 @@ services:
     ports:
       - "6379:6379"
 
-      
-      
+  portainer:
+    container_name: portainer
+    restart: always
+    ports: 
+      - "8000:8000"
+      - "9000:9000"
+    volumes:
+      - /van/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data/db       
+
+  discountdb: 
+    container_name: discountdb
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=Ba@9125595423
+      - POSTGRES_DB=DiscountDb
+    restart: always
+    ports: 
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+       
   catalog.restfulapi:
     container_name: catalog.restfulapi
     environment:
