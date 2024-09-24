@@ -1,4 +1,5 @@
 using Discount.Data.Repository;
+using Discount.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
 
+#region Migration on postGre
+
+
+
+#endregion
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -24,5 +30,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.MigrateDatabase<Program>();
 app.Run();

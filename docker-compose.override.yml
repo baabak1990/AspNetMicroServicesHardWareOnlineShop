@@ -74,13 +74,17 @@ services:
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
 
   discount:
+    container_name: discount
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=Ba@9125595423;"
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
+    depends_on:
+      - discountdb
     ports:
-      - "8080"
-      - "8081"
+      - "8082"
+      - "8083"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
