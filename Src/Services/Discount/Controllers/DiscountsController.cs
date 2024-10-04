@@ -11,18 +11,18 @@ namespace Discount.Controllers
     public class DiscountsController : ControllerBase
     {
 
-        private readonly IDiscountRepository _repository;
+        private readonly IDiscountRepository _discountRepository;
 
         public DiscountsController(IDiscountRepository repository)
         {
-            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            _discountRepository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
         [HttpGet("{productName}", Name = "GetDiscount")]
         [ProducesResponseType(typeof(Coupon), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Coupon>> GetDiscount(string productName)
         {
-            var coupon = await _repository.GetDiscount(productName);
+            var coupon = await _discountRepository.GetDiscount(productName);
             return Ok(coupon);
         }
 
@@ -30,7 +30,7 @@ namespace Discount.Controllers
         [ProducesResponseType(typeof(Coupon), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Coupon>> CreateDiscount([FromBody] Coupon coupon)
         {
-            await _repository.CreateDiscount(coupon);
+            await _discountRepository.CreateDiscount(coupon);
             return CreatedAtRoute("GetDiscount", new { productName = coupon.ProductName }, coupon);
         }
 
@@ -38,14 +38,14 @@ namespace Discount.Controllers
         [ProducesResponseType(typeof(Coupon), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Coupon>> UpdateDiscount([FromBody] Coupon coupon)
         {
-            return Ok(await _repository.UpdateDiscount(coupon));
+            return Ok(await _discountRepository.UpdateDiscount(coupon));
         }
 
         [HttpDelete("{productName}", Name = "DeleteDiscount")]
         [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<bool>> DeleteDiscount(string productName)
         {
-            return Ok(await _repository.DeleteDiscount(productName));
+            return Ok(await _discountRepository.DeleteDiscount(productName));
         }
     }
 }

@@ -10,14 +10,14 @@ namespace Basket.Api.Controllers
     [ApiController]
     public class BasketController : ControllerBase
     {
-        private readonly IBasketRepository _repository;  
+        private readonly IBasketRepository _discountRepository;  
         //private readonly DiscountGrpcService _discountGrpcService;
         //private readonly IPublishEndpoint _publishEndpoint;
         //private readonly IMapper _mapper;
 
         public BasketController(IBasketRepository repository/*, DiscountGrpcService discountGrpcService, IPublishEndpoint publishEndpoint, IMapper mapper*/)
         {
-            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            _discountRepository = repository ?? throw new ArgumentNullException(nameof(repository));
             //_discountGrpcService = discountGrpcService ?? throw new ArgumentNullException(nameof(discountGrpcService));
             //_publishEndpoint = publishEndpoint ?? throw new ArgumentNullException(nameof(publishEndpoint));
             //_mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
@@ -27,7 +27,7 @@ namespace Basket.Api.Controllers
         [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<ShoppingCart>> GetBasket(string userName)
         {
-            var basket = await _repository.GetBasket(userName);
+            var basket = await _discountRepository.GetBasket(userName);
             return Ok(basket ?? new ShoppingCart(userName));
         }
 
@@ -44,14 +44,14 @@ namespace Basket.Api.Controllers
             //    item.Price -= coupon.Amount;
             //}
 
-            return Ok(await _repository.UpdateBasket(basket));
+            return Ok(await _discountRepository.UpdateBasket(basket));
         }
 
         [HttpDelete("{userName}", Name = "DeleteBasket")]
         [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> DeleteBasket(string userName)
         {
-            await _repository.DeleteBasket(userName);
+            await _discountRepository.DeleteBasket(userName);
             return Ok();
         }
 
@@ -67,7 +67,7 @@ namespace Basket.Api.Controllers
         //    // remove the basket
 
         //    // get existing basket with total price
-        //    var basket = await _repository.GetBasket(basketCheckout.UserName);
+        //    var basket = await _discountRepository.GetBasket(basketCheckout.UserName);
         //    if (basket == null)
         //    {
         //        return BadRequest();
@@ -79,7 +79,7 @@ namespace Basket.Api.Controllers
         //    await _publishEndpoint.Publish(eventMessage);
 
         //    // remove the basket
-        //    await _repository.DeleteBasket(basket.UserName);
+        //    await _discountRepository.DeleteBasket(basket.UserName);
 
         //    return Accepted();
         //}
